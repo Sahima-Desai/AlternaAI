@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veesure | AI Alternative Finder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Water-like background animation -->
+    <div class="water-bg">
+        <div class="water-wave"></div>
+        <div class="water-wave"></div>
+        <div class="water-wave"></div>
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="logo-img">
+                    <i class="fas fa-search-plus" style="font-size: 50px; color: white;"></i>
+                </div>
+                <h1 class="logo-text">Veesure</h1>
+            </div>
+            <h2 class="main-heading">AI Alternative Finder</h2>
+            <p class="header-tagline">Discover intelligent alternatives for any product with comprehensive analysis</p>
+            
+            <!-- Updated animal grid for alternative finder -->
+            <div class="animal-grid">
+                <div class="animal-item">
+                    <div class="animal-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <span class="animal-label">Electronics</span>
+                </div>
+                <div class="animal-item">
+                    <div class="animal-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <span class="animal-label">Automotive</span>
+                </div>
+                <div class="animal-item">
+                    <div class="animal-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <span class="animal-label">Home & Garden</span>
+                </div>
+                <div class="animal-item">
+                    <div class="animal-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <span class="animal-label">Kitchen</span>
+                </div>
+                <div class="animal-item">
+                    <div class="animal-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <span class="animal-label">Sports</span>
+                </div>
+                <div class="animal-item">
+                    <div class="animal-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <span class="animal-label">Computing</span>
+                </div>
+                <div class="animal-item">
+                    <div class="animal-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <span class="animal-label">Fashion</span>
+                </div>
+                <div class="animal-item">
+                    <div class="animal-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <span class="animal-label">Tools</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Search Card -->
+        <div class="form-card">
+            <h2 class="form-title">
+                <i class="fas fa-search"></i>
+                Find Alternatives
+            </h2>
+            
+            <div class="search-section">
+                <div class="input-group">
+                    <input type="text" id="itemInput" class="form-control search-input" 
+                           placeholder="Enter any product name (e.g., iPhone 15, Samsung TV, Honda City)">
+                    <button class="btn btn-primary search-btn" id="searchBtn">
+                        <i class="fas fa-search"></i>
+                        <span>Find Alternatives</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="loading-state" style="display: none;">
+            <div class="loading-spinner">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="loading-text">Analyzing and finding alternatives...</p>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" style="display: none;">
+            <!-- Original Item Details -->
+            <div class="result-card original-item-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-info-circle"></i> Original Item Details</h3>
+                </div>
+                <div class="card-body" id="originalItemDetails">
+                    <!-- Original item details will be populated here -->
+                </div>
+            </div>
+
+            <!-- Alternatives Section -->
+            <div class="result-card alternatives-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-list-alt"></i> Alternative Options</h3>
+                </div>
+                <div class="card-body">
+                    <div id="alternativesList" class="alternatives-grid">
+                        <!-- Alternatives will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Modal -->
+        <div class="modal fade" id="comparisonModal" tabindex="-1">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <i class="fas fa-balance-scale"></i>
+                            Detailed Comparison
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="comparisonContent">
+                            <!-- Comparison content will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-section">
+                        <h5><i class="fas fa-search-plus"></i> Veesure</h5>
+                        <p>Your intelligent alternative finder powered by advanced AI technology.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-section">
+                        <h5><i class="fas fa-cog"></i> Features</h5>
+                        <ul>
+                            <li><i class="fas fa-check"></i> AI-Powered Analysis</li>
+                            <li><i class="fas fa-check"></i> Real-time Pricing</li>
+                            <li><i class="fas fa-check"></i> Detailed Comparisons</li>
+                            <li><i class="fas fa-check"></i> Indian Market Focus</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-section">
+                        <h5><i class="fas fa-envelope"></i> Contact</h5>
+                        <p><i class="fas fa-map-marker-alt"></i> India</p>
+                        <p><i class="fas fa-phone"></i> +91 XXXX XXXXXX</p>
+                        <p><i class="fas fa-envelope"></i> info@veesure.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>&copy; 2025 Veesure. All rights reserved.</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
+

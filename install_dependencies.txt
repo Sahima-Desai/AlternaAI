@@ -1,0 +1,10 @@
+Dependencies Required for Veesure AI Alternative Finder:
+
+pip install flask==3.0.0
+pip install flask-cors==4.0.0
+pip install google-genai==0.8.0
+pip install gunicorn==23.0.0
+pip install pydantic==2.8.0
+
+Or copy and paste this single command:
+pip install flask==3.0.0 flask-cors==4.0.0 google-genai==0.8.0 gunicorn==23.0.0 pydantic==2.8.0
